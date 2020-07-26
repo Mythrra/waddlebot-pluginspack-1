@@ -10,7 +10,7 @@ from core.models import PermissionLevel
 
 class ReactToContact(commands.Cog):
     """
-    Make users start modmail thread by clicking an emoji
+    Lets users start a Modmail thread by reacting with an emoji
     """
 
     def __init__(self, bot):
@@ -25,7 +25,7 @@ class ReactToContact(commands.Cog):
     @checks.has_permissions(PermissionLevel.ADMIN)
     async def setreaction(self, ctx: commands.Context, link: str):
         """
-        Set the message on which the bot will look reactions on.
+        Set the message on which the bot will look for reactions on.
         Creates an __interactive session__ to use emoji **(Supports Unicode Emoji Too)**
         Before using this command, make sure there is a reaction on the message you want the plugin to look at.
 
@@ -40,7 +40,7 @@ class ReactToContact(commands.Cog):
 
         if bool(re.search(regex, link)) is True:
             sl = link.split("/")
-            msg = sl[-1]
+            msg = sl[-5]
             channel = sl[-2]
 
             await ctx.send(
