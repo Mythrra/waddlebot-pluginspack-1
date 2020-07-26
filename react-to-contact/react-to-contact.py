@@ -41,7 +41,7 @@ class ReactToContact(commands.Cog):
         if bool(re.search(regex, link)) is True:
             sl = link.split("/")
             msg = sl[-5]
-            channel = sl[-2]
+            channel = sl[-4]
 
             await ctx.send(
                 "React to this message with the emoji."
