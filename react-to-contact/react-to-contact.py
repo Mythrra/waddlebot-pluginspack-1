@@ -25,10 +25,9 @@ class ReactToContact(commands.Cog):
     @checks.has_permissions(PermissionLevel.ADMIN)
     async def setreaction(self, ctx: commands.Context, link: str):
         """
-        Set the message on which the bot will look for reactions on.
+        Set the message on which the bot will look reactions on.
         Creates an __interactive session__ to use emoji **(Supports Unicode Emoji Too)**
         Before using this command, make sure there is a reaction on the message you want the plugin to look at.
-
         **Usage:**
         {prefix}setreaction <message_url>
         """
@@ -36,7 +35,7 @@ class ReactToContact(commands.Cog):
         def check(reaction, user):
             return user == ctx.message.author
 
-        regex = r"discord\.com"
+        regex = r"discordapp\.com"
 
         if bool(re.search(regex, link)) is True:
             sl = link.split("/")
@@ -63,7 +62,7 @@ class ReactToContact(commands.Cog):
             await ctx.send("Done!")
 
         else:
-            await ctx.send("Please give a valid message link.")
+            await ctx.send("Please give a valid message link")
             return
 
     @commands.Cog.listener()
