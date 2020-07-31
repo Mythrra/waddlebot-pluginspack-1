@@ -32,7 +32,7 @@ class TranslatePlugin(commands.Cog):
 
     @commands.command()
     async def translate(self, ctx, msgid: int):
-        """Translate a sent message or a modmail thread message into english."""
+        """Translate a sent message or a Modmail thread message into English. (Powered by Google Translate)"""
         try:
             msg = await ctx.channel.fetch_message(msgid)
             if not msg.embeds:
@@ -54,7 +54,7 @@ class TranslatePlugin(commands.Cog):
 
     @commands.command(aliases=["tt"])
     async def translatetext(self, ctx, *, message):
-        """Translates a provided message into english"""
+        """Translates the message provided into English."""
         tmsg = self.translator.translate(message)
         embed = discord.Embed()
         embed.color = 4388013
@@ -64,7 +64,7 @@ class TranslatePlugin(commands.Cog):
     @commands.command(aliases=["att"])
     @checks.has_permissions(PermissionLevel.SUPPORTER)
     async def auto_translate_thread(self, ctx):
-        """Turn on auto translations for the ongoing thread."""
+        """Turn on auto-translation for the current Modmail thread."""
         if "User ID:" not in ctx.channel.topic:
             await ctx.send("The channel is not a modmail thread")
             return
@@ -86,7 +86,7 @@ class TranslatePlugin(commands.Cog):
     @commands.command(aliases=["tat"])
     @checks.has_permissions(PermissionLevel.MODERATOR)
     async def toggle_auto_translations(self, ctx, enabled: bool):
-        """Enable/Disable automatic translations"""
+        """Enable/Disable automatic translation."""
         self.enabled = enabled
         await self.db.update_one(
             {"_id": "config"}, {"$set": {"enabled": self.enabled}}, upsert=True
